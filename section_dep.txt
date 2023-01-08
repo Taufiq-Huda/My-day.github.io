@@ -1,0 +1,5 @@
+eco_Earning_Source_Amount
+eco_Spend
+rel_Good-Work
+rel_Bad-Work_Details_score
+rel_No-Work_Details_score

@@ -1,0 +1,27 @@
+###
+
+eco_Earning_Source_Amount_no@
+
+eco_Spending_Field_Amount_no@
+
+rel_Good-Work_Details_score_@
+
+rel_Bad-Work_Details_score_@
+
+rel_No-Work_Details_score_@
+
+###
+
+0-1-0-0-0
+
+###
+
+Under daevelopment
+
+###
+
+Under daevelopment
+
+###
+
+Under daevelopment
