@@ -40,29 +40,33 @@ const add_subsection = (section) => {
   if(navigator.onLine){
     const xmlhttp = new XMLHttpRequest();
     xmlhttp.onload = function () {
-      // let all_subsection = Array.from(e.children)
-      // let all_subsection_value =[]
-      // let j=0
-      // for(let i=1 ; i<all_subsection.length ; i+=2){
-      //   let a=Array.from(all_subsection[i].children)
-      //   all_subsection_value[j++] = [a[0].value,a[2].value]
-      // }
-      // console.log(all_subsection_value)
-      console.log(this.responseText)
+      let all_subsection = Array.from(e.children)
+      let all_subsection_value =[]
+      let j=0
+      for(let i=1 ; i<all_subsection.length ; i+=2){
+        let a=Array.from(all_subsection[i].children)
+        all_subsection_value[j++] = [a[0].value,a[2].value]
+      }
+      console.log(all_subsection_value)
       e.innerHTML+= this.responseText;
-      // all_subsection = Array.from(e.children)
-      // let all_subsection_value =[]
-      // let j=0
-      // for(let i=1 ; i<all_subsection.length ; i+=2){
-      //   let a=Array.from(all_subsection[i].children)
-      //   all_subsection_value[j++] = [a[0].value,a[2].value]
-      // }
+      // console.log(this.responseText)
+      all_subsection = Array.from(e.children)
+      // console.log(all_subsection)
+      j=0
+      for(let i=1 ; i<all_subsection.length-1 ; i+=2){
+        let a=Array.from(all_subsection[i].children)
+        val=all_subsection_value[j++];
+        a[0].value = val[0]
+        a[2].value = val[1]
+        console.log(a[0].value,a[2].value)
+        // all_subsection_value[j++] = [a[0].value,a[2].value]
+      }
       // console.log(all_subsection_value)
       // val=Array.from(e.children).map((value)=>{
       //   console.log(value);
       // })
-      // // console.log(e.children)
-      // console.log("bhgk")
+      // console.log(e.children)
+      console.log("bhgk")
       // console.log(all_subsection)
     };
     xmlhttp.open("GET", "../Backend/add_sub_section.php?q=" + section);
