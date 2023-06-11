@@ -1,11 +1,11 @@
-08 Jan 2023
+10 Jan 2023
 
 ###
 
-eco_Earning_Source_Amount_Sneha@5000/Shristy@3000
+eco_Earning_Source_Amount_Labonno@3000
 
-eco_Spending_Field_Amount_Momo@120/Puri@40/Beguni@10/Bun@10/but@10/Alur dom@10
-
+eco_Spending_Field_Amount_Rikshaw To Buet@70/Sokaler Nasta@20/Tehari@80/Elachi Milk@30/Bus@10/@/@/@
+@
 rel_Good-Work_Details_score_@
 
 rel_Bad-Work_Details_score_@
