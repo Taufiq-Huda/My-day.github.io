@@ -56,8 +56,6 @@ fclose($fptr1);
   <div id="txtHint">
   </div>
 
-  <?php include '__navbar.php'; ?>
-  
   <div class="d-flex justify-content-center">
     <div class="d-flex flex-column">
       <div class="top mb-3">
