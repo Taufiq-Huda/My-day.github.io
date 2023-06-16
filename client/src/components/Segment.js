@@ -21,18 +21,6 @@ export default function Segment(props) {
             />
           </div>
         </div>
-        {/* <dev id="Prayer">
-              Prayer<br>
-              <?php
-              include '../Backend/_prayer.php';
-              ?>
-            </dev>
-            <div className="d-flex flex-column" id="rel">
-              <?php
-              $sup_section = "rel";
-              include '../Backend/_section.php';
-              ?>
-            </div> */}
       </div>
     </div>
   );

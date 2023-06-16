@@ -1,2 +1,0 @@
-Welcome John
-Your email address is john.doe@example.com
