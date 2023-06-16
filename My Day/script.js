@@ -1,28 +1,3 @@
-// let promise= new Promise(function(resolve, reject){
-//   const xmlhttp = new XMLHttpRequest();
-//   xmlhttp.onload = function () {
-//     section=this.responseText.split("\r\n");
-//     //title_txtlabel_numlabel_supsection_NumberOfSubSection
-//     resolve(section);
-//   };
-//   xmlhttp.open("GET", "getsection.php");
-//   xmlhttp.send();
-// })
-// promise.then((section)=>{
-//   section.forEach((str, index) => {
-//     const xmlhttp = new XMLHttpRequest();
-//     xmlhttp.onload = function () {
-//       res=this.responseText.split("__");
-//       target = document.getElementById(res[1]);
-//       console.log(res)
-//       target.innerHTML+= res[0];
-//     };
-//     xmlhttp.open("GET", "section.php?q=" + str);
-//     xmlhttp.send();
-//   });
-// })
-
-
 let pending_promise= 0 ;
 let promise_index;
 
@@ -81,56 +56,6 @@ const add_subsection = (section) => {
   */
 };
 
-const source = (str,section,type) => {
-  serial=(section.offsetTop-24)/62
-  console.log(serial)
-  
-  if(navigator.onLine){
-    if(localStorage.length!=0){
-      while(localStorage.length!=0){
-        //do something
-      }
-      //updating data
-      const ofline_data = new XMLHttpRequest();
-      ofline_data.onload = function () {
-        // console.log(this.response);
-        // document.getElementById("txtHint").innerHTML = this.responseText;
-      };
-      ofline_data.open("GET", "../Backend/update_section_data.php?q=" + str + "_" + section.parentElement.id  + "_" + type + "_" + serial );
-      ofline_data.send();
-    }
-
-    //updating data
-    const update_data = new XMLHttpRequest();
-    update_data.onload = function () {
-      // console.log(this.response);
-      // document.getElementById("txtHint").innerHTML = this.responseText;
-    };
-    update_data.open("GET", "../Backend/update_section_data.php?q=" + str + "_" + section.parentElement.id  + "_" + type + "_" + serial );
-    update_data.send();
-    
-    /*
-
-    get hint
-    if (str.length == 0) {
-      document.getElementById("txtHint").innerHTML = "";
-      return;
-    } else {
-      const xmlhttp = new XMLHttpRequest();
-      xmlhttp.onload = function () {
-        document.getElementById("txtHint").innerHTML = this.responseText;
-      };
-      xmlhttp.open("GET", "../Backend/gethint.php?q=" + str);
-      xmlhttp.send();
-    }
-    */
-
-  }
-  else{
-    key=`${section.parentElement.id}_${serial}_${type}`
-    localStorage.setItem(key,str)
-  }
-};
 
 const prayer=(time)=>{
   // e = document.getElementById();

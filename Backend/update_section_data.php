@@ -5,7 +5,6 @@ $q = $_REQUEST["q"];
 $req=explode("_", $q);
 $data=$req[0];
 $id=$req[1];
-$type=$req[2];
 $serial=$req[3];
 echo($q);
 //loading today file

@@ -6,6 +6,7 @@ export default function Segment(props) {
     <div>
       <div className="mb-3 d-flex flex-column">
         {props.title}
+        <hr/>
         <div className="d-flex flex-column" id="eco">
           <div className="earn mb-3">
             <Block
