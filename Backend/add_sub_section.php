@@ -1,9 +1,4 @@
 <?php
-$section = $_REQUEST["q"];
-$num="";
-$txt="";
-$txt_label="";
-$num_label="";
 $fptr1 = fopen("today.txt", "r+");
 $content = fread($fptr1, filesize("today.txt"));
 fclose($fptr1);
@@ -20,6 +15,5 @@ foreach ($arr as $str) {
     }
 };
 $display = str_replace("-", " ", $section);
-include '_SubSection.php';
 echo $sub_section;
 ?>
