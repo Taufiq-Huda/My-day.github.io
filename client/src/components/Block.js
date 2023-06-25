@@ -44,11 +44,10 @@ export default function Block(props) {
   };
 
   return (
-    <div>
-      <label htmlFor="exampleInputEmail1" className="form-label">{props.title}</label>
+    <div className="mx-">
+      <label htmlFor="exampleInputEmail1" className="form-label"><h4>{props.title}</h4></label>
       <div className="input-group mb-3 d-flex flex-column" id={props.title}>
-        <br/>
-        <FeildValuePair num_label="Amount" txt_label="Source"/>
+        <FeildValuePair num_label={props.num_label} txt_label={props.txt_label}/>
       </div>
       <button type="button"  className="btn btn-primary" onClick={add_subsection}> More Field </button>
     </div>
