@@ -13,6 +13,7 @@ app.use(express.json())
 connectToMongo()
 
 app.use("/api/auth", require(path.join(__dirname, "routes/auth.js")));
+app.use("/api/newpage", require(path.join(__dirname, "routes/newpage.js")));
 
 let p=[false,true,true,false,true];
 // app.get('/api', (req, res) => {

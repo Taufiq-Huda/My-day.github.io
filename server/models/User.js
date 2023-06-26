@@ -11,6 +11,9 @@ const UserSchema = new Schema({
     required: true,
     unique: true,
   },
+  pageStructure: {
+    type: Object
+  },
   password: {
     type: String,
     required: true,

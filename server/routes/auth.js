@@ -7,8 +7,51 @@ var jwt = require("jsonwebtoken");
 
 const JWT_SECRET= "ygfysgui"
 
-router.post(
-  "/SignUp/",
+const defaultPage={
+  Segment: {
+    Economy: [
+      {
+        title: "Earning",
+        NumInput: "Amount",
+        TxtInput: "Source",
+        type: "FVP",
+      },
+      {
+        title: "Spending",
+        NumInput: "Amount",
+        TxtInput: "Field",
+        type: "FVP",
+      },
+    ],
+    Relegious: [
+      {
+        title: "Good Work",
+        NumInput: "Amount",
+        TxtInput: "Source",
+        type: "FVP",
+      },
+      {
+        title: "Bad Work",
+        NumInput: "Amount",
+        TxtInput: "Field",
+        type: "FVP",
+      },
+      {
+        title: "Prayer",
+        list: [
+          { title: "Fajar", checked: true },
+          { title: "Johor", checked: true },
+          { title: "Asar", checked: true },
+          { title: "Magreb", checked: true },
+          { title: "Esha", checked: true },
+        ],
+        type: "CL",
+      },
+    ],
+  },
+}
+
+router.post( "/SignUp/",
   [
     body("name", "Enter a valid name").isLength({ min: 3 }),
     body("email", "Enter a valid email").isEmail(),
@@ -22,7 +65,6 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    
     const salt = await bcrypt.genSalt(10);
     const secPass = await bcrypt.hash(req.body.password, salt);
 
@@ -30,6 +72,7 @@ router.post(
       name: req.body.name,
       password: secPass,
       email: req.body.email,
+      pageStructure : defaultPage,
     });
 
     const data = {
@@ -47,8 +90,7 @@ router.post(
   }
 );
 
-router.post(
-  "/SignIn/",
+router.post("/SignIn/",
   [
     body("email", "Enter a valid email").isEmail(),
     body("password", "Password must be atleast 5 characters").isLength({
@@ -75,7 +117,6 @@ router.post(
         return res.status (400).json ({error: "Please try to login with correct credentials"});
     }
 
-    console.log(user, passwordCompare)
     const data = {
       user: {
         id: user.id,

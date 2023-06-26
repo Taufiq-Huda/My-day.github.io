@@ -47,7 +47,7 @@ export default function Block(props) {
     <div className="mx-">
       <label htmlFor="exampleInputEmail1" className="form-label"><h4>{props.title}</h4></label>
       <div className="input-group mb-3 d-flex flex-column" id={props.title}>
-        <FeildValuePair num_label={props.num_label} txt_label={props.txt_label}/>
+        <FeildValuePair num_label={props.num_label} txt_label={props.txt_label} path={`${props.path}/${props.title}/0`}/>
       </div>
       <button type="button"  className="btn btn-primary" onClick={add_subsection}> More Field </button>
     </div>

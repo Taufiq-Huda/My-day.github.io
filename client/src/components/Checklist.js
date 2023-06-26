@@ -6,7 +6,7 @@ export default function Checklist(props) {
     let state = event.target.checked ? 1 : 0;
     props.update()
   };
-
+  
   // const fetchChecklist=()=>{
   //   let fetchCheck = fetch("http://localhost:4000/api");
   //   fetchCheck.then((response) => {

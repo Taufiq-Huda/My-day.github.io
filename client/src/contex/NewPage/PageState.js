@@ -1,9 +1,8 @@
-import Segment from "../../components/Segment";
 import PageContext from "./PageContext";
 import { useState } from "react";
 
 const PageState = (props) => {
-  const defaultState = {
+  const InitialState = {
     Segment: {
       Economy: [
         {
@@ -47,7 +46,7 @@ const PageState = (props) => {
     },
   };
 
-  const [state, setstate] = useState(defaultState);
+  const [state, setstate] = useState(InitialState);
 
   const UpdateCheckList=()=>{
     setstate({Segment: {
@@ -81,7 +80,7 @@ const PageState = (props) => {
         {
           title: "Prayer",
           list: [
-            { title: "Fajar", checked: true },
+            { title: "Fajar", checked: false },
             { title: "Johor", checked: true },
             { title: "Asar", checked: true },
             { title: "Magreb", checked: true },
