@@ -7,12 +7,6 @@ $data=$req[0];
 $id=$req[1];
 $serial=$req[3];
 echo($q);
-//loading today file
-
-$fptr1 = fopen("today.txt", "r+");
-$content = fread($fptr1, filesize("today.txt"));
-$content_arr = explode("\r\n\r\n###\r\n\r\n",$content);
-$section_data = $content_arr[1];
 
 //getting the right section
 

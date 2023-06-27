@@ -1,55 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FeildValuePair from "./FeildValuePair";
 
 export default function Block(props) {    
-  const add_subsection = (event) => {
-    if(navigator.onLine){
-      // const xmlhttp = new XMLHttpRequest();
-      // xmlhttp.onload = function () {
-        // let all_subsection = Array.from(e.children)
-        // let all_subsection_value =[]
-        // let j=0
-        // for(let i=1 ; i<all_subsection.length ; i+=2){
-          // let a=Array.from(all_subsection[i].children)
-          // all_subsection_value[j++] = [a[0].value,a[2].value]
-        // }
-        // console.log(all_subsection_value)
-        // e.innerHTML+= this.responseText;
-        // console.log(this.responseText)
-        // all_subsection = Array.from(e.children)
-        // console.log(all_subsection)
-        // // j=0
-        // for(let i=1 ; i<all_subsection.length-1 ; i+=2){
-        //   let a=Array.from(all_subsection[i].children)
-        //   val=all_subsection_value[j++];
-        //   a[0].value = val[0]
-        //   a[2].value = val[1]
-        //   console.log(a[0].value,a[2].value)
-        //   // all_subsection_value[j++] = [a[0].value,a[2].value]
-        // }
-        // console.log(all_subsection_value)
-        // val=Array.from(e.children).map((value)=>{
-        //   console.log(value);
-        // })
-        // console.log(e.children)
-        // console.log("bhgk")
-        // console.log(all_subsection)
-      // };
-      // xmlhttp.open("GET", "../Backend/add_sub_section.php?q=" + section);
-      // xmlhttp.send();
-    }
-    else{
-      alert("Internet is not connected")
-    }
+  const add_FeildValuePair = () => {
+        SetPairs(Pairs.concat(""))
   };
+  
+  const GetAllPairs = async ()=>{
+    const response = await fetch(`http://localhost:4000/api/newpage/getpairs/${props.path}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ5OTQ5ZjdhOTQ0N2QxMDY5N2M5ZDJkIn0sImlhdCI6MTY4Nzc2NzU0M30.XZtV5XxVuluXyBroeUU2DL1EfHA8aD-H6m1pf2_AqCs"
+        }
+      })
+      const {pairs} = await response.json()
+      SetPairs(pairs)
+  }
+
+  useEffect(() => {
+    GetAllPairs()
+  }, [])
+
+  let [Pairs, SetPairs]=useState([""])
 
   return (
     <div className="mx-">
       <label htmlFor="exampleInputEmail1" className="form-label"><h4>{props.title}</h4></label>
       <div className="input-group mb-3 d-flex flex-column" id={props.title}>
-        <FeildValuePair num_label={props.num_label} txt_label={props.txt_label} path={`${props.path}/${props.title}/0`}/>
+        {Pairs.map((element,index)=>{
+          return(
+            <FeildValuePair num_label={props.num_label} txt_label={props.txt_label} path={`${props.path}/${index}`} value={element} key={index}/>
+          )
+        })}
       </div>
-      <button type="button"  className="btn btn-primary" onClick={add_subsection}> More Field </button>
+      <button type="button"  className="btn btn-primary" onClick={add_FeildValuePair}> More Field </button>
     </div>
   );
 }

@@ -16,7 +16,7 @@ export default function Segment(props) {
               if (element.type === "FVP") {
                 return (
                   <div className="col" key={index}>
-                    <Block  title={element.title}  num_label={element.NumInput}  txt_label={element.TxtInput} path={props.title}  />
+                    <Block  title={element.title}  num_label={element.NumInput}  txt_label={element.TxtInput} path={`${props.title}/${element.title}`}  />
                   </div>
                 );
               } else if (element.type === "CL") {
