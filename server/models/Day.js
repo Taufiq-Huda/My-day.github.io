@@ -6,7 +6,11 @@ const DaySchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
   },
-  Segment: {
+  date: {
+    type: String,
+    required: true,
+  },
+  Segments: {
     type: Object,
   },  
 });

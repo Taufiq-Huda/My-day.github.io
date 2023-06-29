@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 
+const host="http://localhost:4000"
+
 export default function FeildValuePair(props) {
 
     const UpdateFeildDisplay = (event) => {
@@ -26,26 +28,26 @@ export default function FeildValuePair(props) {
 
     const UpdateValueInBackend = async ()=>{
       //updating data in backend
-      if (value!="") {
-        const response = await fetch(`http://localhost:4000/api/newpage/updatepair/${props.path}/value&${value}`, {
+      if (value!=="") {
+        const response = await fetch(`${host}/api/newpage/updatepair/${props.path}/value&${value}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ5OTQ5ZjdhOTQ0N2QxMDY5N2M5ZDJkIn0sImlhdCI6MTY4Nzc2NzU0M30.XZtV5XxVuluXyBroeUU2DL1EfHA8aD-H6m1pf2_AqCs"
+            "auth-token": localStorage.getItem("auth-token")
           }
         })
         await response.json()
       }
-      }
+    }
 
     const UpdateTextInBackend = async ()=>{
       //updating data in backend
-      if (text!="") {
-        const response = await fetch( `http://localhost:4000/api/newpage/updatepair/${props.path}/text&${text}` , {
+      if (text!=="") {
+        const response = await fetch( `${host}/api/newpage/updatepair/${props.path}/text&${text}` , {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            "auth-token":   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ5OTQ5ZjdhOTQ0N2QxMDY5N2M5ZDJkIn0sImlhdCI6MTY4Nzc2NzU0M30.XZtV5XxVuluXyBroeUU2DL1EfHA8aD-H6m1pf2_AqCs"
+            "auth-token": localStorage.getItem("auth-token")
           }
         })
         await response.json()
@@ -56,7 +58,7 @@ export default function FeildValuePair(props) {
     const [value, setValue] = useState('');
 
   return (
-    <div className="sub-section d-flex flex-row">
+    <div className="sub-section d-flex flex-row my-1">
       <input type="text" className="form-control" placeholder={props.txt_label} aria-label="test2" value={text} onChange={UpdateFeildDisplay} onBlur={UpdateTextInBackend}/>
       <span className="input-group-text">@</span>
       <input type="number" className="form-control" placeholder={props.num_label} aria-label={props.num_label} value={value} onChange={UpdatValueDisplay} onBlur={UpdateValueInBackend}/>

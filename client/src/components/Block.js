@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from "react";
 import FeildValuePair from "./FeildValuePair";
 
+const host="http://localhost:4000"
+
 export default function Block(props) {    
   const add_FeildValuePair = () => {
-        SetPairs(Pairs.concat(""))
+   SetPairs(Pairs.concat(""))
+   fetch(`${host}/api/newpage/addpairs/${props.path}`, {
+       method: 'POST',
+       headers: {
+         'Content-Type': 'application/json',
+         "auth-token": localStorage.getItem("auth-token")
+       }
+     })
   };
   
   const GetAllPairs = async ()=>{
-    const response = await fetch(`http://localhost:4000/api/newpage/getpairs/${props.path}`, {
+    const response = await fetch(`${host}/api/newpage/getpairs/${props.path}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ5OTQ5ZjdhOTQ0N2QxMDY5N2M5ZDJkIn0sImlhdCI6MTY4Nzc2NzU0M30.XZtV5XxVuluXyBroeUU2DL1EfHA8aD-H6m1pf2_AqCs"
+          "auth-token": localStorage.getItem("auth-token")
         }
       })
       const {pairs} = await response.json()
@@ -19,8 +28,8 @@ export default function Block(props) {
   }
 
   useEffect(() => {
-    GetAllPairs()
-  }, [])
+    GetAllPairs();
+  }, [ ]) // eslint-disable-line react-hooks/exhaustive-deps
 
   let [Pairs, SetPairs]=useState([""])
 
