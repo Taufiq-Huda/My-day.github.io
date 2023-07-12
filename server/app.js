@@ -13,18 +13,11 @@ app.use(express.json())
 connectToMongo()
 
 app.use("/api/auth", require(path.join(__dirname, "routes/auth.js")));
+
 app.use("/api/newpage", require(path.join(__dirname, "routes/newpage.js")));
 
-let p=[false,true,true,false,true];
-// app.get('/api', (req, res) => {
-//     res.send({"res":p})
-//     // res.send({"l":"ghruhguf"})
-// })
+app.use("/api/history", require(path.join(__dirname, "routes/history.js")));
 
-app.get('/update/', (req, res) => {
-    res.send({"res":p})
-    // res.send({"l":"ghruhguf"})
-})
 
 app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port}`);

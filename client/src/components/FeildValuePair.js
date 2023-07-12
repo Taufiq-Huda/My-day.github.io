@@ -52,11 +52,12 @@ export default function FeildValuePair(props) {
         })
         await response.json()
       }
-      }
+    }
 
-    const [text, setText] = useState('');
-    const [value, setValue] = useState('');
-
+    const [text, setText] = useState(props.value.text);
+    const [value, setValue] = useState(props.value.value);
+    // console.log(props.value.text,text)
+    // console.log(props.value.value,value,"|uhguhgur")
   return (
     <div className="sub-section d-flex flex-row my-1">
       <input type="text" className="form-control" placeholder={props.txt_label} aria-label="test2" value={text} onChange={UpdateFeildDisplay} onBlur={UpdateTextInBackend}/>
