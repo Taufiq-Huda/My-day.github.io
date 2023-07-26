@@ -46,15 +46,11 @@ router.get("/weekly/:year&:week", fetchuser, async (req, res) => {
     }
 });
 
-router.get("/daily/:year&:month&:day", fetchuser, async (req, res) => {
+router.get("/daily/:date", fetchuser, async (req, res) => {
     try {
       userId = req.user.id;
-      const startDate = new Date(req.params.year, 0, 1);
-      const allpages = await Day.find({ user: userId }).select("-user -_id -__v");
-      const pages=allpages.filter((Element)=>{
-        return((Element.date.split("-")[1]==req.params.month)&&(Element.date.split("-")[0]==req.params.year))
-      })
-      res.send({ status: "ok", allpreviousday : pages });
+      const day = await Day.findOne({ user: userId, date: req.params.date }).select("-user -_id -__v");
+      res.send({ status: "ok", day : day });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal Server Error");

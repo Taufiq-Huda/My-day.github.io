@@ -2,7 +2,6 @@ import React,{useState,useEffect}from 'react'
 
 import PageHead from "./PageHead";
 import Segment from "./Segment";
-import PageState from "../contex/NewPage/PageState"
 
 const host="http://localhost:4000"
 
@@ -29,7 +28,6 @@ export default function NewPage() {
     <div className="d-flex container justify-content-center my-5">
         <div className="d-flex flex-column my-3">
           <PageHead />
-          <PageState>
             <form action="welcome_get.php" method="get">
               {Object.keys(thispageStruc.Segment).map((element,index)=>{
                   return(
@@ -42,7 +40,6 @@ export default function NewPage() {
               <textarea className="form-control" aria-label="With textarea"></textarea>
             </div> */}
             </form>
-          </PageState>
         </div>
       </div>
   )
