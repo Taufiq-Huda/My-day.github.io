@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <NavBar />
       {/* <WeeklyHistory /> */}
-      <DailyHistory/>
+      <DailyHistory />
       {/* <NewPage /> */}
     </div>
   );
