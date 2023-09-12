@@ -9,6 +9,13 @@ router.get("/all/", fetchuser, async (req, res) => {
     try {
       userId = req.user.id;
       const pages = await Day.find({ user: userId }).select("-user -_id -__v");
+      console.log(pages,{
+        date: "2002-10-10",
+        "Economy-Earning": 5000,
+        "Relegious-Good Work": 8,
+        "Relegious-Bad Work": 6,
+        "Economy-Spending": 20,
+      })
       res.send({ status: "ok", allpreviousday : pages });
     } catch (error) {
       console.error(error.message);

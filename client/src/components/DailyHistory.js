@@ -4,58 +4,7 @@ import SegmentHistory from "./SegmentHistory";
 
 export default function DailyHistory() {
   let [thispageStruc,setthispagestruc]=useState({})
-  const data = [
-    {
-      date: "2002-10-10",
-      "Economy-Earning": 5000,
-      "Relegious-Good Work": 8,
-      "Relegious-Bad Work": 6,
-      "Economy-Spending": 20,
-    },
-    {
-      date: "2002-10-11",
-      "Economy-Earning": 0,
-      "Relegious-Good Work": 8,
-      "Relegious-Bad Work": 6,
-      "Economy-Spending": 120,
-    },
-    {
-      date: "2002-10-12",
-      "Economy-Earning": 50,
-      "Relegious-Good Work": 8,
-      "Relegious-Bad Work": 6,
-      "Economy-Spending": 140,
-    },
-    {
-      date: "2002-10-13",
-      "Economy-Earning": 100,
-      "Relegious-Good Work": 8,
-      "Relegious-Bad Work": 6,
-      "Economy-Spending": 110,
-    },
-    {
-      date: "2002-10-14",
-      "Economy-Earning": 50,
-      "Relegious-Good Work": 8,
-      "Relegious-Bad Work": 6,
-      "Economy-Spending": 170,
-    },
-    {
-      date: "2002-10-15",
-      "Economy-Earning": 1500,
-      "Relegious-Good Work": 8,
-      "Relegious-Bad Work": 6,
-      "Economy-Spending": 150,
-    },
-    {
-      date: "2002-10-16",
-      "Economy-Earning": 0,
-      "Relegious-Good Work": 8,
-      "Relegious-Bad Work": 6,
-      "Economy-Spending": 120  
-    },
-  ];
-
+  let data
   const chartdata = {
     "Economy":[
       [{ type: "date", label: "Day" },"Earning","Spending"],
@@ -104,9 +53,66 @@ export default function DailyHistory() {
     })
     setthispagestruc(chartdata)
   }
+  const getdata=()=>{
+    console.log("getting data")
+    
+    data = [
+      {
+        date: "2002-10-10",
+        "Economy-Earning": 5000,
+        "Relegious-Good Work": 8,
+        "Relegious-Bad Work": 6,
+        "Economy-Spending": 20,
+      },
+      {
+        date: "2002-10-11",
+        "Economy-Earning": 0,
+        "Relegious-Good Work": 8,
+        "Relegious-Bad Work": 6,
+        "Economy-Spending": 120,
+      },
+      {
+        date: "2002-10-12",
+        "Economy-Earning": 50,
+        "Relegious-Good Work": 8,
+        "Relegious-Bad Work": 6,
+        "Economy-Spending": 140,
+      },
+      {
+        date: "2002-10-13",
+        "Economy-Earning": 100,
+        "Relegious-Good Work": 8,
+        "Relegious-Bad Work": 10,
+        "Economy-Spending": 110,
+      },
+      {
+        date: "2002-10-14",
+        "Economy-Earning": 50,
+        "Relegious-Good Work": 8,
+        "Relegious-Bad Work": 6,
+        "Economy-Spending": 170,
+      },
+      {
+        date: "2002-10-15",
+        "Economy-Earning": 1500,
+        "Relegious-Good Work": 8,
+        "Relegious-Bad Work": 6,
+        "Economy-Spending": 150,
+      },
+      {
+        date: "2002-10-16",
+        "Economy-Earning": 0,
+        "Relegious-Good Work": 8,
+        "Relegious-Bad Work": 6,
+        "Economy-Spending": 120  
+      },
+    ];
+  
+  }
 
   useEffect(() => {
     // GetPageStructure()
+    getdata()
     setchartdata()
   }, [])
   return (

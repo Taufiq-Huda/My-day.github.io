@@ -3,6 +3,7 @@ import NavBar from "./components/NavBar";
 import NewPage from "./components/NewPage";
 import DailyHistory from  "./components/DailyHistory"
 import WeeklyHistory from "./components/WeeklyHistory";
+import { Outlet } from "react-router-dom";
 
 function App() {
   localStorage.setItem("auth-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ5OTQ5ZjdhOTQ0N2QxMDY5N2M5ZDJkIn0sImlhdCI6MTY4Nzc2NzU0M30.XZtV5XxVuluXyBroeUU2DL1EfHA8aD-H6m1pf2_AqCs");
@@ -10,8 +11,9 @@ function App() {
   return (
     <div className="App">
       <NavBar />
+      <Outlet />
       {/* <WeeklyHistory /> */}
-      <DailyHistory />
+      {/* <DailyHistory /> */}
       {/* <NewPage /> */}
     </div>
   );

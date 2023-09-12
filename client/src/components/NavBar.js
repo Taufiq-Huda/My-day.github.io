@@ -1,4 +1,5 @@
 import React from "react";
+import { Outlet, Link } from "react-router-dom";
 
 export default function NavBar() {
   return (
@@ -28,9 +29,7 @@ export default function NavBar() {
               </li>
               <li className="nav-item">
                 {/* <a className="nav-link" href="newday.php"> */}
-                <a className="nav-link" href="/">
-                  New Day
-                </a>
+                <Link to={`/newday`} className="nav-link"> New Day</Link>
               </li>
               <li className="nav-item dropdown">
                 <a
@@ -44,14 +43,10 @@ export default function NavBar() {
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <a className="dropdown-item" href="/">
-                      Daily
-                    </a>
+                    <Link to={`/history/daily`} className="dropdown-item" >Daily</Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="/">
-                      Weekly
-                    </a>
+                    <Link to={`/history/weekly`} className="dropdown-item" >Weekly</Link>
                   </li>
                   <li>
                     <a className="dropdown-item" href="/">

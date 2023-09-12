@@ -2,12 +2,40 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 
+import NewPage from "./components/NewPage";
+import reportWebVitals from './reportWebVitals';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import DailyHistory from './components/DailyHistory';
+import WeeklyHistory from './components/WeeklyHistory';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "/newday",
+        element: <NewPage />,
+      },
+      {
+        path: "/history/daily",
+        element: <DailyHistory />,
+      },
+      {
+        path: "/history/weekly",
+        element: <WeeklyHistory />,
+      },
+    ],
+  },
+]);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   /* </React.StrictMode> */
 );
 
