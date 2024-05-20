@@ -53,38 +53,64 @@ router.get("/getpairs/:segment/:block", fetchuser, async (req, res) => {
   }
 });
 
-router.post("/addpairs/:segment/:block", fetchuser, async (req, res) => {
+router.get("/getchecklist/:segment/:block", fetchuser, async (req, res) => {
   try {
     userId = req.user.id;
     const page = await Day.findOne({ date: today, user: userId });
 
-    let segments = page.Segments;
-    segments[`${req.params.segment}-${req.params.block}`].push({text:"",value:""});
-
-    await Day.findOneAndUpdate(
-      { date: today, user: userId },
-      { Segments: segments }
-    );
-    res.json({ status: "ok", pairs: [{text:"",value:""}] });
-    
+    if (page.Segments[`${req.params.segment}-${req.params.block}`]) {
+      res.json({
+        status: "ok",
+        pairs: page.Segments[`${req.params.segment}-${req.params.block}`],
+      });
+    } else {
+      let segment = page.Segments;
+      segment[`${req.params.segment}-${req.params.block}`] = [{text:"",value:""}];
+      await Day.findOneAndUpdate(
+        { date: today, user: userId },
+        { Segments: segment }
+      );
+      res.json({ status: "ok", pairs: [{text:"",value:""}] });
+    }
   } catch (error) {
-    console.error(error.message,"addpair");
+    console.error(error.message,"get pair");
     res.status(500).send("Internal Server Error");
   }
 });
 
-router.get(
-  "/updatepair/:segment/:block/:index/:type&:value",
-  fetchuser,
+// router.post("/addpairs/:segment/:block", fetchuser, async (req, res) => {
+//   try {
+//     userId = req.user.id;
+//     const page = await Day.findOne({ date: today, user: userId });
+
+//     let segments = page.Segments;
+//     segments[`${req.params.segment}-${req.params.block}`].push({text:"",value:""});
+
+//     await Day.findOneAndUpdate(
+//       { date: today, user: userId },
+//       { Segments: segments }
+//     );
+//     res.json({ status: "ok", pairs: [{text:"",value:""}] });
+    
+//   } catch (error) {
+//     console.error(error.message,"addpair");
+//     res.status(500).send("Internal Server Error");
+//   }
+// });
+
+router.post("/updatepair/:segment/:block/:index/:type&:value",fetchuser,
   async (req, res) => {
     const  {segment,block,index,type,value}=req.params
     try {
       userId = req.user.id;
       const page = await Day.findOne({ date: today, user: userId });
-
       let segments = page.Segments;
-      
-      segments[`${segment}-${block}`][index][type]=value
+      if(segments[`${segment}-${block}`].length==index){
+        segments[`${segment}-${block}`].push({text:"",value:""});
+        segments[`${segment}-${block}`][index][type]=value
+      }else{
+        segments[`${segment}-${block}`][index][type]=value
+      }
 
       await Day.findOneAndUpdate(
         { date: today, user: userId },

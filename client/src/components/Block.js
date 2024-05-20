@@ -1,23 +1,15 @@
 import React, { useEffect, useState } from "react";
 import FeildValuePair from "./FeildValuePair";
 
-const host="http://localhost:4000"
-
 export default function Block(props) {    
 
   const add_FeildValuePair = () => {
    SetPairs(Pairs.concat({text: "", value: ""}))
-   fetch(`${host}/api/newpage/addpairs/${props.path}`, {
-       method: 'POST',
-       headers: {
-         'Content-Type': 'application/json',
-         "auth-token": localStorage.getItem("auth-token")
-       }
-     })
   };
 
   const GetAllPairs = async ()=>{
-    const response = await fetch(`${host}/api/newpage/getpairs/${props.path}`, {
+    // console.log(props.path)
+    const response = await fetch(`${process.env.REACT_APP_HOST}/api/newpage/getpairs/${props.path}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
