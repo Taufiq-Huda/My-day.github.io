@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 export default function Checklist({title,list,path}) {
 
   const UpdateCheck = (event) => {
-    let state = event.target.checked ? 1 : 0;
+    // let state = event.target.checked ? 1 : 0;
     
   };
   
   const fetchChecklist= async()=>{
-    let fetchCheck = await fetch(`${process.env.REACT_APP_HOST}/api/newpage/getpairs/${path}`);
+    // let fetchCheck = await fetch(`${process.env.REACT_APP_HOST}/api/newpage/getpairs/${path}`);
     // fetchCheck.then((response) => {
       // return response.json();
     // })

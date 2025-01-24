@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 
-const host="http://localhost:4000"
 
 export default function FeildValuePair(props) {
 
@@ -28,8 +27,9 @@ export default function FeildValuePair(props) {
 
     const UpdateValueInBackend = async ()=>{
       //updating data in backend
+      props.BlockCallback();
       if (value!=="") {
-        const response = await fetch(`${host}/api/newpage/updatepair/${props.path}/value&${value}`, {
+        const response = await fetch(`${process.env.REACT_APP_HOST}/api/newpage/updatepair/${props.path}/value&${value}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -42,8 +42,9 @@ export default function FeildValuePair(props) {
 
     const UpdateTextInBackend = async ()=>{
       //updating data in backend
+      props.BlockCallback(text!="");
       if (text!=="") {
-        const response = await fetch( `${host}/api/newpage/updatepair/${props.path}/text&${text}` , {
+        const response = await fetch( `${process.env.REACT_APP_HOST}/api/newpage/updatepair/${props.path}/text&${text}` , {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

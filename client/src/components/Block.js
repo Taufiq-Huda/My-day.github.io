@@ -4,11 +4,13 @@ import FeildValuePair from "./FeildValuePair";
 export default function Block(props) {    
 
   const add_FeildValuePair = () => {
-   SetPairs(Pairs.concat({text: "", value: ""}))
+    if(morefield){
+      SetPairs(Pairs.concat({text: "", value: ""}))
+      setmorefield(false)
+    }
   };
 
   const GetAllPairs = async ()=>{
-    // console.log(props.path)
     const response = await fetch(`${process.env.REACT_APP_HOST}/api/newpage/getpairs/${props.path}`, {
         method: 'GET',
         headers: {
@@ -20,12 +22,20 @@ export default function Block(props) {
       SetPairs(pairs)
   }
 
+  const handleCallback=(h)=>{
+    setmorefield(h);
+  }
   useEffect(() => {
     GetAllPairs();
-    console.log("test")
+    let a=Pairs.reduce((tillnow,element)=>{
+      console.log(element,element.value!=="",element.text!=="",tillnow,tillnow && element.value!=="" && element.text!=="")
+      return tillnow && element.value!=="" && element.text!==""
+    },true)
+    setmorefield(a);
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  let [Pairs, SetPairs]=useState([])
+  const [Pairs, SetPairs]=useState([])
+  const [morefield, setmorefield] = useState(false);
 
   return (
     <div className="mx-">
@@ -33,7 +43,7 @@ export default function Block(props) {
       <div className="input-group mb-3 d-flex flex-column" id={props.title}>
         {Pairs.map((element,index)=>{
           return(
-            <FeildValuePair num_label={props.num_label} txt_label={props.txt_label} path={`${props.path}/${index}`} value={element} key={index}/>
+            <FeildValuePair num_label={props.num_label} txt_label={props.txt_label} path={`${props.path}/${index}`} value={element} key={index} BlockCallback={setmorefield}/>
           )
         })}
       </div>

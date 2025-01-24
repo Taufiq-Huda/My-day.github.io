@@ -98,7 +98,7 @@ router.get("/getchecklist/:segment/:block", fetchuser, async (req, res) => {
 //   }
 // });
 
-router.post("/updatepair/:segment/:block/:index/:type&:value",fetchuser,
+router.get("/updatepair/:segment/:block/:index/:type&:value",fetchuser,
   async (req, res) => {
     const  {segment,block,index,type,value}=req.params
     try {
