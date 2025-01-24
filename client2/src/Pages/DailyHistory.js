@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from "react";
-import SegmentHistory from "./SegmentHistory";
+import SegmentHistory from "../components/SegmentHistory";
 // require('dotenv').config();
 
 export default function DailyHistory() {

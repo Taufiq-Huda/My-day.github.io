@@ -9,8 +9,8 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import DailyHistory from './components/DailyHistory';
-import WeeklyHistory from './components/WeeklyHistory';
+import DailyHistory from './Pages/DailyHistory';
+import WeeklyHistory from './Pages/WeeklyHistory';
 
 const router = createBrowserRouter([
   {
