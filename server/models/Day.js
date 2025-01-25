@@ -10,7 +10,7 @@ const DaySchema = new Schema({
     type: String,
     required: true,
   },
-  Segments: {
+  Events : {
     type: Object,
   },  
 });

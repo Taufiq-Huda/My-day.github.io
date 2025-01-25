@@ -8,6 +8,9 @@ const Day = require("../models/Day");
 let today = new Date();
 today = today.toISOString().split("T")[0];
 
+const CATGORY = {
+  Economy : ["Earning" , "Sending"]
+}
 router.get("/pagestructure/", fetchuser, async (req, res) => {
   try {
     userId = req.user.id;
@@ -33,6 +36,7 @@ router.get("/getpairs/:segment/:block", fetchuser, async (req, res) => {
     userId = req.user.id;
     const page = await Day.findOne({ date: today, user: userId });
 
+    // console.log(page.Segments[`${req.params.segment}-${req.params.block}`])
     if (page.Segments[`${req.params.segment}-${req.params.block}`]) {
       res.json({
         status: "ok",
@@ -40,11 +44,15 @@ router.get("/getpairs/:segment/:block", fetchuser, async (req, res) => {
       });
     } else {
       let segment = page.Segments;
+      if(req.params.segment == "Economy"){
+        segment[`${req.params.segment}-${req.params.block}`] = [{text:"",value:""}];
+      }
+      console.log("hello")
       segment[`${req.params.segment}-${req.params.block}`] = [{text:"",value:""}];
-      await Day.findOneAndUpdate(
-        { date: today, user: userId },
-        { Segments: segment }
-      );
+      // await Day.findOneAndUpdate(
+      //   { date: today, user: userId },
+      //   { Segments: segment }
+      // );
       res.json({ status: "ok", pairs: [{text:"",value:""}] });
     }
   } catch (error) {
@@ -78,25 +86,7 @@ router.get("/getchecklist/:segment/:block", fetchuser, async (req, res) => {
   }
 });
 
-// router.post("/addpairs/:segment/:block", fetchuser, async (req, res) => {
-//   try {
-//     userId = req.user.id;
-//     const page = await Day.findOne({ date: today, user: userId });
 
-//     let segments = page.Segments;
-//     segments[`${req.params.segment}-${req.params.block}`].push({text:"",value:""});
-
-//     await Day.findOneAndUpdate(
-//       { date: today, user: userId },
-//       { Segments: segments }
-//     );
-//     res.json({ status: "ok", pairs: [{text:"",value:""}] });
-    
-//   } catch (error) {
-//     console.error(error.message,"addpair");
-//     res.status(500).send("Internal Server Error");
-//   }
-// });
 
 router.get("/updatepair/:segment/:block/:index/:type&:value",fetchuser,
   async (req, res) => {

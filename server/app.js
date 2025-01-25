@@ -18,6 +18,7 @@ app.use("/api/newpage", require(path.join(__dirname, "routes/newpage.js")));
 
 app.use("/api/history", require(path.join(__dirname, "routes/history.js")));
 
+app.use("/api/event", require(path.join(__dirname, "routes/event.js")));
 
 app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port}`);
