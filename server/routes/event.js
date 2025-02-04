@@ -77,7 +77,6 @@ router.get("/fields/:category/", async (req, res) => {
 
 
 router.post("/update/:category/", fetchuser, async (req, res) => {
-      const  {segment,block,index,type,value}=req.params
       try {
         userId = req.user.id;
         const page = await Day.findOne({ date: today, user: userId });

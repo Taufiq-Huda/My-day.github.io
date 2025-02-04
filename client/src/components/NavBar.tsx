@@ -3,7 +3,7 @@
 
 export default function NavBar() {
   return (
-      <nav className="static w-screen">
+      <nav className="sticky w-screen left-0">
         Lorem ipsum dolor sit amet.
         {/* <div className="container-fluid">
           <a className="navbar-brand" href="/">
