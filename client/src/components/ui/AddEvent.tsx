@@ -1,5 +1,6 @@
 import React, { MouseEvent, useState} from 'react'
 import { useRef } from 'react';
+import Economic from './eventRecording/Economic';
 // import Modal from './modals';
 
 type AddEventProps = {
@@ -8,7 +9,7 @@ type AddEventProps = {
     type : "Economic" | "Valuation"
 }
 
-function AddEvent({title, children}:AddEventProps) {
+function AddEvent({title, children, type}:AddEventProps) {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const child = useRef<HTMLDivElement>(null);
     
@@ -32,10 +33,13 @@ function AddEvent({title, children}:AddEventProps) {
       </div>
     </div>
     <div className={`absolute left-0 top-0 m-auto w-screen flex justify-around  h-screen bg-black/20 rounded-xl z-40 ${modalIsOpen?'block`':'hidden'}`} onClick={closeModal} >
-      <div className="absolute bg-white w-fit top-[50%] translate-y-[-50%]" ref={child}>
-        <h2>Modal Title</h2>
-        {/* <button onClick={closeModal} >Close</button> */}
-        <div>Modal Content</div>
+      <div className="absolute bg-white w-fit top-[50%] translate-y-[-50%] rounded-xl" ref={child}>
+        {(type == "Economic") && <Economic onUpload={()=>setModalIsOpen(false)}/>}
+        {(type == "Valuation" ) && (<div>
+              <h2>Modal Title2</h2>
+                  {/* <button onClick={closeModal} >Close</button> */}
+          <div>Modal Content</div></div>)
+          }
       </div>
     </div> 
     </>
